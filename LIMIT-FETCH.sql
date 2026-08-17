@@ -69,3 +69,126 @@ INSERT INTO products (id, product_name, category, price, stock) VALUES
 (8,  'Pen Set',    'Stationery',  15.00,   150),
 (9,  'Printer',    'Electronics', 450.00,  6),
 (10, 'Desk Lamp',  'Furniture',   35.00,   20);
+
+
+-- 1. Retrieve the 5 highest‑paid employees. Show all columns.
+select
+	*
+from
+	employees
+order by
+	salary desc
+limit 5;
+
+-- 2 Retrieve the 5 most recent orders (by order_date). Show id, customer_id, and order_date.
+select
+	O.id,
+    O.customer_id,
+    O.order_date
+from
+	orders as O
+order by
+	O.order_date desc
+limit 5;
+
+-- 3. Retrieve employees 6 through 10 (the 6th, 7th, 8th, 9th, and 10th rows) when the employees are sorted alphabetically by name. Show all columns.
+select
+	*
+from
+	employees as E
+order by 
+	E.name
+LIMIT 5
+OFFSET 5;
+
+-- 4 Retrieve the 3 cheapest products in the Electronics category. Show product_name and price.
+
+
+select
+	P.product_name,
+    P.price
+from
+	products as P
+where
+	P.category = 'Electronics'
+order by
+	price asc
+limit 3;
+
+
+-- 5 Retrieve the 3 most expensive products overall – including any ties in price (use FETCH with WITH TIES). Show product_name and price.
+
+
+-- 6. Retrieve the 2 oldest employees (by hire_date). Show name and hire_date.
+
+-- 7 Retrieve the 4th and 5th most expensive products 
+    
+select
+	*
+from
+	products as P
+order by
+	P.price desc
+limit 2
+offset 3;
+
+-- 8 For customer 101, retrieve their most recent 2 orders (by order_date descending). Show id, order_date, and total_amount.
+    
+-- 9 Find the top 3 departments by average salary. Show department and the avg_salary
+    
+select
+	department,
+    AVG(salary)
+from
+	employees
+group by
+	department
+order by
+	AVG(salary) desc
+limit 3;
+    
+-- 10 implement pagination: show the second page of products when each page contains 3 items, sorted alphabetically by product_name. 
+-- Show product_name and price.
+    
+select
+	P.product_name,
+    P.price
+from
+	products as P
+order by
+	P.product_name asc
+limit 3
+offset 3;
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
